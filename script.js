@@ -5,8 +5,8 @@ var cities = [];
 function displayCityWeather() {
   
   var city = $(this).attr("data-name") || localStorage.getItem('cityKey');
-  var currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c475eb02407571ed89e1cc41db9cc7a8";
-  var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c475eb02407571ed89e1cc41db9cc7a8";
+  var currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c475eb02407571ed89e1cc41db9cc7a8";
+  var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c475eb02407571ed89e1cc41db9cc7a8";
   
 
   $("#weather").empty();
@@ -19,7 +19,7 @@ function displayCityWeather() {
     var lat = response.coord.lat
     var lon = response.coord.lon
     var icon = response.weather[0].icon
-    var icon2 = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+    var icon2 = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
     $("#weather").append('<div id="currentWeather"></div>')
     $("#currentWeather").append(`<h2>${response.name}</h2>`)
     $("#currentWeather").append(`<p>` + time.toDateString() + `</p>`)
@@ -29,7 +29,7 @@ function displayCityWeather() {
     $("#currentWeather").append(`<p>Wind Speed: ${response.wind.speed} m/s</p>`)
     console.log(response)
 
-    var currentUv = "http://api.openweathermap.org/data/2.5/uvi?appid=c475eb02407571ed89e1cc41db9cc7a8&lat=" + lat + "&lon=" + lon
+    var currentUv = "https://api.openweathermap.org/data/2.5/uvi?appid=c475eb02407571ed89e1cc41db9cc7a8&lat=" + lat + "&lon=" + lon
 
     $.ajax({
       url: currentUv,
@@ -59,7 +59,7 @@ function displayCityWeather() {
       for (i = 0; i < 5; i++) {
         var timed = new Date(response.list[x].dt_txt)
         var futureIcon = response.list[x].weather[0].icon
-        var futureIcon2 = "http://openweathermap.org/img/wn/" + futureIcon + "@2x.png"       
+        var futureIcon2 = "https://openweathermap.org/img/wn/" + futureIcon + "@2x.png"       
         $(".row").append(`<div class="card" id="${cards[i]}"></div>`)
         $(`#${cards[i]}`).append(`<img src=${futureIcon2}>`);
         $(`#${cards[i]}`).append(`<div id="${futureDays[i]}"></div>`)
